@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook 100 Câu hỏi IT Business Analyst - Phỏng vấn & Thực chiến</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* TÔNG MÀU CHỦ ĐẠO (Xanh Lá Cole) */
+            --primary-color: #00b14f; 
+            --primary-hover: #009140;
+            --text-color: #333333;
+            --bg-light: #f9fdfa; 
+            --bg-dark: #111111;
+            --white: #ffffff;
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary-color); }
+        .font-bold { font-weight: 700; }
+        .uppercase { text-transform: uppercase; }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif; 
+            font-weight: 900;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,177,79,0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #ddd;
+            color: #555;
+        }
+        .btn-outline:hover {
+            background-color: #eee;
+            color: #333;
+            border-color: #ccc;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--bg-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #052e16 0%, #000000 100%);
+            color: var(--white);
+            padding: 70px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero .price-tag {
+            font-size: 2rem;
+            margin: 20px 0;
+        }
+
+        .hero .old-price {
+            text-decoration: line-through;
+            color: #aaa; 
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        .hero .new-price {
+            color: var(--primary-color);
+            font-weight: 900;
+        }
+
+        .hero-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .hero-img-item {
+            aspect-ratio: 3/4;
+            background-color: #222;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid #444;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .hero-img-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-img-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sections General */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Why Section */
+        .why-section {
+            background-color: var(--bg-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .feature-card:hover {
+            border-bottom-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* === NEW SECTION: SKILLS GAINED === */
+        .skills-section {
+            background-color: #fff;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+            border-color: var(--primary-color);
+        }
+
+        .skill-item i {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-right: 15px;
+            background: #f0fdf4;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .skill-item p {
+            font-weight: 700;
+            margin: 0;
+            color: #333;
+        }
+
+        /* === NEW SECTION: TARGET AUDIENCE (GRADIENT STYLE) === */
+        .target-section {
+            background-color: #f8f9fa;
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Ép buộc 4 cột trên Desktop */
+            gap: 15px; /* Giảm gap giữa các ô */
+        }
+
+        .target-card {
+            /* Gradient Background */
+            background: linear-gradient(135deg, #00b14f 0%, #007a37 100%);
+            color: #fff;
+            padding: 20px 15px; /* Giảm padding để hộp nhỏ lại */
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 177, 79, 0.2);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .target-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .target-card i {
+            font-size: 2.5rem; /* Giảm kích thước icon */
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .target-card h3 {
+            font-size: 1.1rem; /* Giảm cỡ chữ tiêu đề */
+            font-weight: 900;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .target-card p {
+            font-size: 0.9rem; /* Giảm cỡ chữ nội dung */
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Decorative circle for target card */
+        .target-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        /* Feedback Section */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feedback-item {
+            background: #eee;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feedback-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- FORM & PAYMENT SECTION --- */
+        .order-section {
+            background: linear-gradient(135deg, #00220e 0%, #111 100%);
+            color: var(--white);
+            padding: 80px 0;
+        }
+
+        .order-box {
+            background: var(--white);
+            color: var(--text-color);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 177, 79, 0.2);
+        }
+
+        .order-price-summary {
+            background: #f0fdf4; /* Xanh rất nhạt */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px dashed #28a745;
+            text-align: center;
+        }
+
+        /* Payment State Styles */
+        #payment-view, #success-view {
+            display: none;
+        }
+
+        .payment-info {
+            text-align: center;
+        }
+
+        .qr-placeholder {
+            width: 220px;
+            height: 220px;
+            background: #fff;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .qr-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .customer-summary {
+            text-align: left;
+            background: #fdfdfd;
+            padding: 15px;
+            border: 1px solid #eee;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .customer-summary p {
+            margin-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .customer-summary p:last-child {
+            border-bottom: none;
+        }
+
+        .bank-instruction {
+            color: #d32f2f;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 500;
+            background: #fff5f5;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            flex-direction: column;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero-images { grid-template-columns: 1fr; }
+            .order-box { padding: 25px 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; } 
+            .target-grid { grid-template-columns: 1fr; } /* Trên điện thoại: 1 cột (xếp chồng 4 hàng) */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo" style="text-decoration: none;">BA MASTER <span style="color:var(--primary-color)">.</span></a>
+            <a href="#order-form" class="btn">Mua Sách Ngay</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero text-center">
+        <div class="container">
+            <h1>SỞ HỮU NGAY BỘ EBOOK ĐỘC QUYỀN<br><span class="text-primary">100 CÂU HỎI IT BUSINESS ANALYST</span></h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 20px;">Bí kíp thực chiến & Kinh nghiệm chinh phục nghề ITBA</p>
+            
+            <div class="price-tag">
+                <span class="old-price">129.000đ</span>
+                <span class="new-price">69.000đ</span>
+            </div>
+
+            <a href="#order-form" class="btn" style="padding: 18px 40px; font-size: 1.3rem;">ĐĂNG KÝ MUA NGAY</a>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: #cfcfcf;">(Ưu đãi chỉ dành cho 30 người đăng ký hôm nay)</p>
+
+            <!-- Grid Ảnh -->
+            <div class="hero-images">
+                <div class="hero-img-item">
+                    <img src="https://drive.google.com/thumbnail?id=1C0tpn6pvyr7bKce8dklZx9B0ALu6exrR&sz=w1000" alt="Bìa sách">
+                </div>
+                <div class="hero-img-item">
+                    <img src="https://drive.google.com/thumbnail?id=1uXXL9kY9nC8lZ8jt_H4dFUeeXcoDSrcb&sz=w1000" alt="Nội dung bên trong">
+                </div>
+                <div class="hero-img-item">
+                    <img src="https://drive.google.com/thumbnail?id=11C2ed5dNyoBOJ814q2voy2zlMXJwFkBn&sz=w1000">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section class="intro text-center">
+        <div class="container">
+            <h2 class="section-title">VỀ CUỐN SÁCH NÀY</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left; font-size: 1.1rem; color: #555;">
+                <p style="margin-bottom: 15px;">
+                    Bạn đang loay hoay chuẩn bị cho buổi phỏng vấn vị trí Business Analyst? Hay bạn là một Newbie muốn hiểu sâu hơn về tư duy giải quyết vấn đề trong dự án IT?
+                </p>
+                <p>
+                    Cuốn Ebook <strong>"100 Câu hỏi IT Business Analyst"</strong> không chỉ là lý thuyết suông. Đây là tập hợp những câu hỏi thực tế nhất, đi kèm câu trả lời mẫu chuẩn chỉnh, tư duy phân tích và các Case Study giúp bạn tự tin ứng tuyển vào các công ty công nghệ hàng đầu.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Buy Section -->
+    <section class="why-section">
+        <div class="container text-center">
+            <h2 class="section-title">TẠI SAO BẠN CẦN CUỐN SÁCH NÀY?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-crosshairs feature-icon"></i>
+                    <h3>Trọng tâm & Thực tế</h3>
+                    <p>Không lan man. Tập trung vào 100 câu hỏi thường gặp nhất trong các buổi phỏng vấn BA tại Việt Nam.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-brain feature-icon"></i>
+                    <h3>Tư duy giải quyết vấn đề</h3>
+                    <p>Học cách trả lời thông minh để thể hiện tư duy Logic - điều mà nhà tuyển dụng tìm kiếm.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-file-invoice-dollar feature-icon"></i>
+                    <h3>Deal lương hiệu quả</h3>
+                    <p>Bí quyết đàm phán lương và định vị giá trị bản thân trong mắt nhà tuyển dụng.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 1: SKILLS GAINED -->
+    <section class="skills-section text-center">
+        <div class="container">
+            <h2 class="section-title">NHỮNG KỸ NĂNG ĐẠT ĐƯỢC</h2>
+            <div class="skills-grid">
+                <!-- 6 Items -->
+                <div class="skill-item">
+                    <i class="fa-solid fa-chess-queen"></i>
+                    <p>Tư duy chiến lược ITBA</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-users-line"></i>
+                    <p>Tham gia nhóm kín độc quyền</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p>Hỏi đáp trực tiếp cùng Mentor</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    <p>Kỹ năng phân tích yêu cầu</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-sitemap"></i>
+                    <p>Thành thạo mô hình hóa (UML)</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fa-solid fa-handshake"></i>
+                    <p>Tự tin chinh phục phỏng vấn</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION 2: TARGET AUDIENCE (GRADIENT) -->
+    <section class="target-section text-center">
+        <div class="container">
+            <h2 class="section-title">ĐỐI TƯỢNG PHÙ HỢP</h2>
+            <div class="target-grid">
+                <!-- 4 Gradient Items -->
+                <div class="target-card">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <h3>SINH VIÊN / FRESHER</h3>
+                    <p>Các bạn sinh viên IT/Kinh tế muốn định hướng theo con đường Business Analyst chuyên nghiệp.</p>
+                </div>
+                <div class="target-card">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h3>TESTER / DEV</h3>
+                    <p>Muốn chuyển hướng nghề nghiệp, tận dụng kiến thức kỹ thuật để làm BA hiệu quả.</p>
+                </div>
+                <div class="target-card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>JUNIOR BA</h3>
+                    <p>Đang làm nghề nhưng cần hệ thống hóa kiến thức để thăng tiến lên cấp độ cao hơn.</p>
+                </div>
+                <div class="target-card">
+                    <i class="fa-solid fa-route"></i>
+                    <h3>NGƯỜI TRÁI NGÀNH</h3>
+                    <p>Muốn tìm hiểu về ngành IT và bắt đầu sự nghiệp với vai trò cầu nối BA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback text-center">
+        <div class="container">
+            <h2 class="section-title">FEEDBACK TỪ ĐỘC GIẢ</h2>
+            <p style="margin-bottom: 40px; color: #666;">Hàng trăm bạn trẻ đã sở hữu và thành công. Dưới đây là review thực tế.</p>
+            
+            <div class="feedback-grid">
+                <div class="feedback-item">
+                    <img src="https://drive.google.com/thumbnail?id=11BgiEYenCkWENfe3FJac-CIXlrYsfUo1&sz=w1000" alt="Feedback 1">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://drive.google.com/thumbnail?id=1lKOJahjv3kQrOy6yv4K6-y6naQ-HP3wN&sz=w1000" alt="Feedback 2">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://drive.google.com/thumbnail?id=1uE6biUIBeYOc1skDT-6mkg41dcfj9Ues&sz=w1000" alt="Feedback 3">
+                </div>
+                <div class="feedback-item">
+                    <img src="https://drive.google.com/thumbnail?id=1H67cO0IFse-qfDhlDly2fLG0Unerp2YJ&sz=w1000" alt="Feedback 4">
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px;">
+                <!-- Dùng class .btn để có màu vàng/xanh như nút chính -->
+                <a href="https://docs.google.com/spreadsheets/d/1Tdx9aZBr2WlYMSMzxIYsSmzov2yv9z4AgDj8HDzB7Rw/edit?usp=sharing" class="btn" target="_blank" style="padding: 12px 40px;">Xem full file Feedback</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ORDER FORM SECTION -->
+    <section id="order-form" class="order-section text-center">
+        <div class="container">
+            
+            <!-- STATE 1: FORM ĐĂNG KÝ -->
+            <div id="registration-view" class="order-box">
+                <h2 style="margin-bottom: 10px;">ĐĂNG KÝ NHẬN EBOOK</h2>
+                <p style="margin-bottom: 25px; color: #666;">Điền thông tin để nhận sách qua Email ngay lập tức.</p>
+                
+                <div class="order-price-summary">
+                    <span style="display: block; font-size: 0.9rem; color: #555;">Giá ưu đãi hôm nay:</span>
+                     <span class="old-price" style="font-size: 1rem; color:#999; text-decoration: line-through;">129.000đ</span>                
+                    <span style="font-size: 2rem; font-weight: 900; color: #d32f2f;">69.000 VNĐ</span>
+                </div>
+
+                <form id="book-form" name="google-sheet">
+                    <div class="form-group">
+                        <label class="form-label">Họ và tên *</label>
+                        <input type="text" name="name" id="input-name" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email nhận sách *</label>
+                        <input type="email" name="email" id="input-email" class="form-control" placeholder="Ví dụ: email@gmail.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Số điện thoại *</label>
+                        <input type="tel" name="phone" id="input-phone" class="form-control" placeholder="Nhập số điện thoại Zalo" required>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 18px;">ĐĂNG KÝ NGAY</button>
+                </form>
+            </div>
+
+            <!-- STATE 2: THANH TOÁN (QR CODE) -->
+            <div id="payment-view" class="order-box">
+                <h2 class="uppercase text-primary" style="margin-bottom: 10px;">THANH TOÁN</h2>
+                <p style="color:#666; margin-bottom: 20px;">Quét mã QR bên dưới để hoàn tất đơn hàng.</p>
+
+                <div class="qr-placeholder">
+                    <img src="https://drive.google.com/thumbnail?id=1ck9WTeXXt-yeAJ36Sh_YJm3AAj-0ZGFJ&sz=w1000" alt="Mã QR Thanh Toán" id="qr-image">
+                </div>
+                
+                <p class="bank-instruction">
+    			<i class="fa-solid fa-circle-check" style="color: #2e7d32;"></i>
+    			<span style="color: #6d4c41;">
+        			Vui lòng chuyển khoản đúng nội dung:
+    				</span><br>
+    			<strong>
+        			<span id="transfer-content" style="font-size: 1.2rem; color: #FF000;">...</span>
+    			</strong>
+		</p>
+
+                <div class="customer-summary">
+                    <h4 style="margin-bottom: 15px; color: #333;">Thông tin đơn hàng:</h4>
+                    <p><strong>Họ tên:</strong> <span id="review-name"></span></p>
+                    <p><strong>Email:</strong> <span id="review-email"></span></p>
+                    <p><strong>SĐT:</strong> <span id="review-phone"></span></p>
+                    <p><strong>Số tiền:</strong> <span style="color:red; font-weight:bold;">69.000 đ</span></p>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="btn-confirm" class="btn">XÁC NHẬN ĐÃ THANH TOÁN</button>
+                    <button id="btn-edit" class="btn btn-outline" style="font-family: 'Roboto', sans-serif; font-weight: 700;">Sửa lại thông tin</button>
+                </div>
+                <div id="loading-msg" style="display:none; margin-top:15px; color:#666; font-style: italic;">Hệ thống đang xử lý đơn hàng...</div>
+            </div>
+
+            <!-- STATE 3: THÔNG BÁO THÀNH CÔNG -->
+            <div id="success-view" class="order-box" style="text-align: center;">
+                <div style="font-size: 5rem; color: #28a745; margin-bottom: 20px;">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+                <h2 style="color: #28a745;">ĐĂNG KÝ THÀNH CÔNG!</h2>
+                <p style="margin: 20px 0; font-size: 1.1rem;">
+                    Cảm ơn bạn <strong><span id="success-name"></span></strong>.<br>
+                    Chúng tôi sẽ kiểm tra và gửi Ebook qua Email: <br>
+                    <strong><span id="success-email" style="color: var(--primary-color);"></span></strong><br> 
+                    trong vòng 15 phút.
+                </p>
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <p style="color: #777; font-size: 0.9rem;">
+                        Cần hỗ trợ? Liên hệ Zalo/Hotline: <strong style="color: #333;">0822638227</strong>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #000; color: #888; padding: 40px 0; text-align: center; font-size: 0.9rem;">
+        <div class="container">
+            <p style="margin-bottom: 10px;">&copy; 2026 BA Master. All rights reserved.</p>
+            <p>Website: <a href="https://cole.vn/" style="color: #aaa; text-decoration: none;">https://cole.vn/</a> | Email: event@example.com</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- CẤU HÌNH GOOGLE SHEET ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyEAPkxyfs6EpsDu84ZemNxiyi9qAPPDRywui_Z2q9Czpm2cWU5CZSy0Va8SXVqqBndiQ/exec'; 
+        
+        // --- LOGIC XỬ LÝ FORM ---
+        const form = document.forms['google-sheet'];
+        const registrationView = document.getElementById('registration-view');
+        const paymentView = document.getElementById('payment-view');
+        const successView = document.getElementById('success-view');
+        
+        const btnEdit = document.getElementById('btn-edit');
+        const btnConfirm = document.getElementById('btn-confirm');
+        const loadingMsg = document.getElementById('loading-msg');
+
+        let formDataTemp = {};
+
+        // 1. Khi ấn "Đăng ký ngay"
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Lấy dữ liệu từ form
+            formDataTemp = {
+                name: document.getElementById('input-name').value,
+                email: document.getElementById('input-email').value,
+                phone: document.getElementById('input-phone').value,
+                date: new Date().toLocaleString()
+            };
+
+            // Điền dữ liệu vào màn hình Review
+            document.getElementById('review-name').innerText = formDataTemp.name;
+            document.getElementById('review-email').innerText = formDataTemp.email;
+            document.getElementById('review-phone').innerText = formDataTemp.phone;
+            
+            // LOGIC NỘI DUNG CHUYỂN KHOẢN MỚI: Tên_EBook_SĐT
+            document.getElementById('transfer-content').innerText = `${formDataTemp.name}_EBook_${formDataTemp.phone}`;
+
+            // Chuyển view
+            registrationView.style.display = 'none';
+            paymentView.style.display = 'block';
+            paymentView.scrollIntoView({behavior: "smooth"});
+        });
+
+        // 2. Quay lại sửa
+        btnEdit.addEventListener('click', () => {
+            paymentView.style.display = 'none';
+            registrationView.style.display = 'block';
+        });
+
+        // 3. Xác nhận thanh toán
+        btnConfirm.addEventListener('click', () => {
+            if(scriptURL.includes('HÃY_DÁN')) {
+                alert("Lỗi: Chưa cấu hình Script URL!");
+                return;
+            }
+
+            btnConfirm.disabled = true;
+            btnConfirm.innerText = "Đang gửi...";
+            loadingMsg.style.display = 'block';
+
+            const dataToSend = new FormData();
+            dataToSend.append('Họ tên', formDataTemp.name);
+            dataToSend.append('Email', formDataTemp.email);
+            dataToSend.append('SĐT', formDataTemp.phone);
+            dataToSend.append('Trạng thái', 'Đã chuyển khoản');
+            dataToSend.append('Thời gian', formDataTemp.date);
+
+            fetch(scriptURL, { method: 'POST', body: dataToSend})
+                .then(response => {
+                    paymentView.style.display = 'none';
+                    successView.style.display = 'block';
+                    
+                    document.getElementById('success-name').innerText = formDataTemp.name;
+                    document.getElementById('success-email').innerText = formDataTemp.email;
+                    
+                    successView.scrollIntoView({behavior: "smooth"});
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Có lỗi xảy ra. Vui lòng liên hệ Hotline!");
+                    btnConfirm.disabled = false;
+                    btnConfirm.innerText = "XÁC NHẬN ĐÃ THANH TOÁN";
+                    loadingMsg.style.display = 'none';
+                });
+        });
+    </script>
+</body>
+</html>
